@@ -1,0 +1,124 @@
+
+#secured_ajax_contact {
+	height:100%;
+	background:#fff;
+	margin:auto;
+	border-radius:5px;
+}
+
+#secured_ajax_contact i{
+	font-size:33px;	
+}
+
+@media(max-width:1005px){
+	#secured_ajax_contact {
+		width:100%;
+	}
+	
+	#secured_ajax_contact h1{
+	font-size:25px;
+	}
+	#secured_ajax_contact i{
+	font-size:23px;	
+	}
+
+ }
+ 
+ @media(max-width:400px){
+	#secured_ajax_contact h1{
+		font-size:22px;
+	}
+	#secured_ajax_contact i{
+		font-size:20px !important;	
+	}
+
+ }
+
+#secured_ajax_contact table{
+	width:100%;
+}
+
+#secured_ajax_contact label{
+	display:block;
+	line-height:40px;
+	font-size:14px;
+}
+
+#secured_ajax_contact span.error_sform{
+	float:right;
+	color:red;
+	font-size:12px;
+}
+
+#secured_ajax_contact input{
+	width:100%;
+	background:#F2F2F2;
+	border:1px solid #DBDBDB;
+	padding:10px;
+	border-radius:3px;
+}
+
+#secured_ajax_contact textarea{
+	width:100%;
+	background:#F2F2F2;
+	border:1px solid #DBDBDB;
+	padding:10px;
+	border-radius:3px;
+	min-height:200px;
+}
+
+#secured_ajax_contact input[type=submit] {
+	margin:30px 0 10px 0; 
+	width:auto;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+	font-family: Arial;
+	font-size: 14px;
+	padding: 5px 40px 5px 40px;
+	text-decoration: none;
+	border:0px;
+	color: #ffffff;
+	background: #333;
+ } 
+#secured_ajax_contact input[type=submit]:hover {
+	background: #1D3E00;
+}
+  
+#secured_ajax_contact input[type=submit]:focus{
+  background: #1D3E00;
+  text-decoration: none;  
+}
+  
+/* Message alert */
+.error_form {
+	width: 100%;
+	border: 1px solid #EA8A8A;
+	background: #FCDEDE;
+	padding: 10px 0px;
+	text-align: center;
+	color: #B52020;
+	font-size: 16px;
+	margin: 10px auto;
+}
+
+.correct_form {
+	width: 100%;
+	border: 1px solid #93B76F;
+	background:#D2F4B0;
+	padding: 10px 0px;
+	text-align: center;
+	color: #044419;
+	font-size: 16px;
+	margin: 10px auto;
+}  
+  
+ /* loader */
+i.loaderimg{
+	float:right;
+	display:none;
+	width:auto;
+	font-size:30px !important;
+	margin-right:10px;
+	color:#274C12;
+}

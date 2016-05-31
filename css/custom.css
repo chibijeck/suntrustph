@@ -1,0 +1,368 @@
+a {
+   outline: 0 !important;
+}
+html{
+	
+}
+body{
+	background:none;
+}
+.stylh1{
+	border-bottom:1px solid #E9E8E6;
+}
+
+
+/* universal css*/
+.displayNone{
+	display:none;
+}
+
+iframe{
+	border: 1px solid #E0E0E0;
+}
+
+
+.owl-item{
+	margin:5px !important;
+}
+
+.openStatus{
+	background:#B3D6A4;
+	padding:5px;
+	border-radius:5px;
+}
+.reservedStatus{
+	background:#F7F6B4;
+	padding:5px;
+	border-radius:5px;
+}
+.soldStatus{
+	background:#EDBDBD;
+	padding:5px;
+	border-radius:5px;
+}
+.padding5{
+	padding:5px;
+}
+
+
+/* main container */
+.containter{
+}
+.mainContainer{
+	background:#ffffff;
+	margin:0px auto;
+	padding:0px;
+	box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* Main Body */
+.mainBody{
+	min-height:500px;
+	padding:40px 0px;
+}
+
+/* header */
+.header{
+	padding:20px;
+	background:#F4BD17;
+}
+
+.header .pull-right{
+	margin-right:60px;
+}
+
+/* info details header */
+.infoDetailsShort td{
+	padding:2px 0;
+}
+
+.infoDetailsShort tr td:first-child{
+	width:40px;
+	text-align:center;
+}
+
+/* icon balance */
+.infoDetailsShort .fa-mobile{
+	font-size:23px;
+}
+
+.infoDetailsShort .fa-phone{
+	font-size:19px;
+}
+
+/* contact us icons */
+.companyInfoContactUs tr td:first-child{
+	width:30px;text-align:center;
+}
+
+.companyInfoContactUs i{
+	font-size:18px;
+}
+
+.companyInfoContactUs i.fa-mobile{
+	font-size:20px;
+}
+
+.companyInfoContactUs i.fa-envelope{
+	font-size:14px;
+}
+
+/* Menu */
+.navbar {	
+	color:#fff;
+	margin:0px;
+	border:0px;
+}
+
+.navbar-collapse {
+	padding:0px
+}
+.navbar {
+    border-radius: 0px;
+}
+
+/* footerDetails */
+.footerDetails{
+	background:#F29E18;
+	color: #333;
+	padding:20px;
+}
+.footerDetails h4{
+	color:#333333;
+	padding-bottom:15px;
+	
+}
+
+.footerDetails p{	
+	font-size:12px;
+}
+
+.footerMenu{
+	padding:0px;margin:0px;
+}
+.footerMenu li{
+	list-style:none;
+}
+
+.footerMenu li a{
+	text-decoration:none;
+	color: #333;	
+	font-size:12px;
+}
+
+.footerMenu li:hover a{
+	color:#EFEFEF;
+}
+
+
+/* info details footer */
+.infoDetailsShortFooter td{
+	font-size:12px;
+	padding:2px 0;
+}
+
+.infoDetailsShortFooter tr td:first-child{
+	width:30px;
+	text-align:center;
+}
+
+/* icon balance footer */
+.infoDetailsShortFooter .fa-mobile{
+	font-size:18px;
+}
+
+.infoDetailsShortFooter .fa-home{
+	font-size:15px;
+}
+
+/* footer */
+.footer{
+	overflow:hidden;
+	background:#D68711;	
+	color: #000;
+	font-size:12px;
+	padding:7px 20px;
+	border-top: 1px solid #AA7700;
+}
+
+/* ****** THEME COLOR ***** */
+
+/* menu */
+.navbar{
+	background-color:#0ABFB2;
+	
+}
+
+.navbar ul li a{
+	color:#ffffff !important;
+}
+
+
+.navbar ul li:hover,#navbar ul li.active a,li.dropdown.open a{	
+	background-color:#059185 !important;
+}
+
+/* submenu */
+.navbar .navbar-nav .open .dropdown-menu > li > a:hover{
+	background:#017267 !important;
+}
+
+.navbar .navbar-nav .open .dropdown-menu {
+	padding:0px;
+	margin:0px;
+}
+
+/* contact us */
+#secured_ajax_contact input[type=submit] {
+	color: #ffffff;
+	background: #037EB7 !important;	
+ } 
+#secured_ajax_contact input[type=submit]:hover {
+	background: #046896 !important;
+}
+  
+#secured_ajax_contact input[type=submit]:focus{
+	background: #046896 !important;
+}
+i.loaderimg{
+	color: #046896 !important;
+}
+
+/* PLUGIN OVERIDES */
+/* slider */
+.nivoSlider {
+	box-shadow:none !important; 
+	height:1000px;	
+}
+
+.nivo-controlNav {
+	margin-top:-37px;
+	position:relative;	
+	padding:0px !important;
+}
+
+.panel-heading{
+	overflow:hidden;
+}
+
+/* properties listing css */
+.propertiesList{
+	text-decoration:none !important;
+	color:#333333;
+	border:1px solid #EAEAEA;
+	display:block;
+	margin-bottom:30px;
+}
+.propertiesList:hover{
+	text-decoration:none !important;
+	color:#333333;
+	-webkit-box-shadow: 0px 0px 15px 2px rgba(0,0,0,0.31);
+	-moz-box-shadow: 0px 0px 15px 2px rgba(0,0,0,0.31);
+	box-shadow: 0px 0px 15px 2px rgba(0,0,0,0.31);
+}
+
+
+/* pbfrReservation.php Design Page */
+.btnRoomPbfrD{
+	float:left;
+	margin:20px 10px;
+}
+
+
+
+
+
+
+/* -----MOBILE responsive Remover---- */
+
+.container .navbar-header,
+.container .navbar-collapse {
+  margin-right: 0;
+  margin-left: 0;
+}
+
+/* Always float the navbar header */
+.navbar-header {
+  float: left;
+}
+
+/* Undo the collapsing navbar */
+.navbar-collapse {
+  display: block !important;
+  height: auto !important;
+  padding-bottom: 0;
+  overflow: visible !important;
+  visibility: visible !important;
+}
+
+.navbar-toggle {
+  display: none;
+}
+.navbar-collapse {
+  border-top: 0;
+}
+
+.navbar-brand {
+  margin-left: -15px;
+}
+
+/* Always apply the floated nav */
+.navbar-nav {
+  float: left;
+  margin: 0;
+}
+.navbar-nav > li {
+  float: left;
+}
+.navbar-nav > li > a {
+  padding: 15px;
+}
+
+/* Redeclare since we override the float above */
+.navbar-nav.navbar-right {
+  float: right;
+}
+
+/* Undo custom dropdowns */
+.navbar .navbar-nav .open .dropdown-menu {
+  position: absolute;
+  float: left;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border: 1px solid rgba(0, 0, 0, .15);
+  border-width: 0 1px 1px;
+  border-radius: 0 0 4px 4px;
+  -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+          box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+}
+.navbar-default .navbar-nav .open .dropdown-menu > li > a {
+  color: #333;
+}
+.navbar .navbar-nav .open .dropdown-menu > li > a:hover,
+.navbar .navbar-nav .open .dropdown-menu > li > a:focus,
+.navbar .navbar-nav .open .dropdown-menu > .active > a,
+.navbar .navbar-nav .open .dropdown-menu > .active > a:hover,
+.navbar .navbar-nav .open .dropdown-menu > .active > a:focus {
+  color: #fff !important;
+
+}
+.navbar .navbar-nav .open .dropdown-menu > .disabled > a,
+.navbar .navbar-nav .open .dropdown-menu > .disabled > a:hover,
+.navbar .navbar-nav .open .dropdown-menu > .disabled > a:focus {
+  color: #999 !important;
+  background-color: transparent !important;
+}
+
+/* Undo form expansion */
+.navbar-form {
+  float: left;
+  width: auto;
+  padding-top: 0;
+  padding-bottom: 0;
+  margin-right: 0;
+  margin-left: 0;
+  border: 0;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
