@@ -1,5 +1,5 @@
 <?php
-	function admin adminSideMenu(){
+	function adminSideMenu(){
 	?>
 		<div class="panel panel-default">		
 				<div class="panel-body">
