@@ -343,7 +343,8 @@
 					<select  class="form-control" name="status" >																										
 						<option value="0" <?php if($ticket->getstatus() == 0){ echo "selected=selected"; } ?>>Pending</option>							
 						<option value="1" <?php if($ticket->getstatus() == 1){ echo "selected=selected"; } ?>>Reject</option>							
-						<option value="2" <?php if($ticket->getstatus() == 2){ echo "selected=selected"; } ?>>Approved</option>					
+						<option value="2" <?php if($ticket->getstatus() == 2){ echo "selected=selected"; } ?>>Approved</option>
+						<option value="3" <?php if($ticket->getstatus() == 3){ echo "selected=selected"; } ?>>Lapsed</option>					
 					</select>								
 				</div> 				
 				<input type="hidden" value=<?php echo $ticket->getpbfr_id(); ?> name="pbfr_id" >

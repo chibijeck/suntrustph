@@ -2,13 +2,15 @@
 	$toUpdateId = $_GET["id"];
 	$autoemail = new autoemail();	
 	$autoemail->selectOne($toUpdateId);
-
+	
+	
 	if(isset($_POST["submitUpdate"])){		
 		try { 
             $autoemail->settest($_POST['test']);
             $autoemail->setday($_POST['day']);
-            $autoemail->update($toUpdateId)
-			?>
+            $autoemail->update($toUpdateId);
+           
+            ?>
 			<div class="alert alert-success alert-dismissible" role="alert">
 			  <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
 			  <strong>Update Successful</strong>
@@ -32,7 +34,7 @@
 				<label for="day">Day of the month *</label>
 				<input type="text" value="<?php echo $autoemail->getday(); ?>" class="form-control"  name="day" placeholder=""  data-error="Required" required>
 				<div class="help-block with-errors">Set to 0 to enable test mode</br>Ex: when set to 7, Email will send at exactly 7th day of the month , sample : 2015-12-07 00:00:00 </div>
-			</div>	
+			</div>
 			
 			<button type="submit" class="btn btn-default" name="submitUpdate" >Submit</button>
 		</form>			

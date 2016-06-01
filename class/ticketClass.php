@@ -195,6 +195,30 @@ class ticket{
 		$result = $this->database->query($sql);
 	}
 	
+	public function updateStatus(){
+		$sql = "SELECT * FROM ticket WHERE status <> 3 AND DATE(created_at) = '". date('Y-m-d', strtotime('-16 days')) ."' ";		
+		$result = $this->database->query($sql);
+		$result = $this->database->result;
+		$result = mysql_fetch_object($result);
+		if(!empty($result->created_at)){
+			$sql = "UPDATE ticket SET status = 3 WHERE status <> 3 AND DATE(created_at) = '". date('Y-m-d', strtotime('-16 days')) ."' ";
+			$result = $this->database->query($sql);
+			return true;
+		}
+	}
+	function selectLapsed(){
+		$objarray = array(); // list of objects
+		$sql = "SELECT * FROM ticket WHERE status = 3";		
+		$result = $this->database->query($sql);
+		$result = $this->database->result;
+		while($row = mysql_fetch_object($result)){
+			$ticket = new ticket();
+			$ticket->init($row);
+			array_push($objarray,$ticket);
+		}
+		return $objarray;
+		// return $result;
+	}
 	function countTicket($statusID){
 		$sql = " SELECT COUNT(*) FROM ticket WHERE status = " . $statusID;
 		

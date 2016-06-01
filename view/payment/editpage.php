@@ -69,9 +69,10 @@
 							
 				<div class="form-group">
 					<label for="exampleInputEmail1">Customer Name *</label>					
-					<select  class="form-control" name="user_id" >																		
+					<select  class="form-control" name="user_id" disabled>																		
 								
 						<?php 
+
 							//show role_id 1 for client only
 							$user = new user();						
 							$user = $user->selectAll('WHERE role_id = 1');	//show only client

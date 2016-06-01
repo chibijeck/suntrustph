@@ -53,7 +53,7 @@
 				</td>		
 				<td><?php echo $row->getid(); ?></td>		
 				<td><?php echo $row->getusername(); ?></td>		
-				<td><?php echo $row->getpassword(); ?></td>		
+				<td><?php echo base64_encode($row->getpassword()); ?></td>		
 				<td><?php echo $row->getemail(); ?></td>		
 				<td><?php echo $row->getcreated_at(); ?></td>		
 				<td>

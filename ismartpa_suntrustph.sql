@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.1.14
+-- version 4.0.10.7
 -- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: May 29, 2016 at 04:19 PM
--- Server version: 5.6.17
--- PHP Version: 5.5.12
+-- Host: localhost:3306
+-- Generation Time: Feb 19, 2016 at 05:59 AM
+-- Server version: 5.5.48-cll
+-- PHP Version: 5.4.31
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -30,7 +30,6 @@ CREATE TABLE IF NOT EXISTS `autoemail` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `test` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `day` int(11) NOT NULL,
-  `email` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
@@ -38,8 +37,8 @@ CREATE TABLE IF NOT EXISTS `autoemail` (
 -- Dumping data for table `autoemail`
 --
 
-INSERT INTO `autoemail` (`id`, `test`, `day`, `email`) VALUES
-(1, '2016-02-25 16:41:00', 0, 'jayjaypalmero@gmail.com');
+INSERT INTO `autoemail` (`id`, `test`, `day`) VALUES
+(1, '2016-02-16 11:52:00', 0);
 
 -- --------------------------------------------------------
 
@@ -126,12 +125,12 @@ INSERT INTO `pbfr` (`id`, `properties_id`, `building`, `floor`, `room`, `status`
 (13, 20, '1', '2', '2', '0'),
 (16, 8, '1', '2', '1', '1'),
 (17, 8, '2', '1', '1', '0'),
-(18, 8, '2', '3', '1', '0'),
-(19, 8, '1', '2', '2', '0'),
+(18, 8, '2', '3', '1', '1'),
+(19, 8, '1', '2', '2', '1'),
 (20, 8, '1', '1', '3', '1'),
 (21, 8, '1', '3', '1', '0'),
 (22, 8, '1', '4', '1', '0'),
-(23, 8, '2', '3', '2', '0'),
+(23, 8, '2', '3', '2', '1'),
 (24, 19, '1', '1', '2', '1'),
 (25, 19, '1', '1', '1', '1'),
 (27, 8, '1', '1', '4', '1'),
@@ -140,7 +139,7 @@ INSERT INTO `pbfr` (`id`, `properties_id`, `building`, `floor`, `room`, `status`
 (30, 21, '1', '1', '3', '1'),
 (31, 21, '1', '1', '4', '1'),
 (32, 24, '2', 'asdfasd', '2', '0'),
-(33, 8, '1', '1', '1', '0'),
+(33, 8, '1', '1', '1', '1'),
 (34, 8, '1', '1', '2', '1'),
 (35, 8, '1', '1', '5', '0');
 
@@ -236,7 +235,7 @@ CREATE TABLE IF NOT EXISTS `ticket` (
   `properties_id` int(11) NOT NULL,
   `customer` varchar(255) NOT NULL,
   `agent` varchar(255) NOT NULL,
-  `created_at` varchar(255) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `status` varchar(255) NOT NULL,
   `pbfr_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
@@ -247,15 +246,15 @@ CREATE TABLE IF NOT EXISTS `ticket` (
 --
 
 INSERT INTO `ticket` (`id`, `properties_id`, `customer`, `agent`, `created_at`, `status`, `pbfr_id`) VALUES
-(40, 8, 'jbuhian', 'umc_division2@outlook.com', '2015-07-13 19:33:07', '1', 21),
-(41, 23, 'Mkbhd22', 'Gerard Miranda', '2015-07-13 19:38:41', '2', 11),
-(42, 8, 'samsoriano', 'ucanreachcecil@yahoo.com', '2015-07-13 19:31:14', '2', 16),
-(43, 20, 'juan', 'Gerard Miranda', '2015-11-25 20:51:23', '1', 9),
-(50, 19, 'juan', 'jebautista2002@yahoo.com', '2015-11-24 01:08:07', '2', 25),
-(51, 21, 'client', 'Gerard Miranda', '2015-11-25 20:52:53', '1', 28),
-(53, 21, 'jayjaay', 'Gerard Miranda', '2016-02-14 06:17:45', '3', 29),
-(54, 19, 'jayjaay', 'Gerard Miranda', '2016-02-14 00:19:48', '3', 24),
-(70, 8, 'juan', 'Gerard Miranda', '2016-02-16 21:26:53', '1', 34);
+(40, 8, 'jbuhian', 'umc_division2@outlook.com', '2015-07-13 11:33:07', '1', 21),
+(41, 23, 'Mkbhd22', 'Gerard Miranda', '2015-07-13 11:38:41', '2', 11),
+(42, 8, 'samsoriano', 'ucanreachcecil@yahoo.com', '2015-07-13 11:31:14', '2', 16),
+(43, 20, 'juan', 'Gerard Miranda', '2015-11-25 12:51:23', '1', 9),
+(50, 19, 'juan', 'jebautista2002@yahoo.com', '2015-11-23 17:08:07', '2', 25),
+(51, 21, 'client', 'Gerard Miranda', '2015-11-25 12:52:53', '1', 28),
+(53, 21, 'jayjaay', 'Gerard Miranda', '2015-11-24 22:17:45', '2', 29),
+(54, 19, 'jayjaay', 'Gerard Miranda', '2015-11-25 17:14:01', '2', 24),
+(70, 8, 'juan', 'Gerard Miranda', '2016-02-16 13:26:53', '1', 34);
 
 -- --------------------------------------------------------
 

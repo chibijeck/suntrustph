@@ -67,7 +67,7 @@
  $this->query = $query;
  //echo $query;
  //$this->result = mysql_query($query,$this->link) or die (print "Class Database: Error while executing Query! Watdapak!");
- $this->result = mysql_query($query,$this->link) or die (mysql_error());
+ $this->result = mysql_query($query,$this->link) or die (mysql_errno()." : ".mysql_error()." Query: ".$query);
  
 // $rows=mysql_affected_rows();
 // old usage ereg("SELECT",$query)

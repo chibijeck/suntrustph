@@ -4,8 +4,7 @@
 	$pbfrId = $_POST['pbfrId'];
 	$properties = new properties();	
 	$properties->selectOne($viewId);	
-	
-	
+		
 	$pbfr = new pbfr();	
 	$pbfr->selectOne($pbfrId);
 ?>	
@@ -177,7 +176,7 @@ if(isset($_POST['submitReserve'])){
 		
 		$mailCustomer->addAddress($_SESSION['user_email']);  //send to customer
 		$mailCustomer->isHTML(true);// Set email format to HTML							
-		$mailCustomer->Subject = 'Rervation Request';
+		$mailCustomer->Subject = 'Reservation Request';
 		$mailCustomer->Body    = '<strong>Reservation Request</strong></br>
 								Your reservation request for '. $properties->gettitle() .' has been submitted</br>
 								We will update you through email as soon as we process your reservation request.
@@ -294,8 +293,9 @@ if(isset($_POST['submitReserve'])){
 									
 								</table>'								
 						;
-						
+
 		$mailCustomer->send();	
+
 	}		
 		?>
 

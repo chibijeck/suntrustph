@@ -67,17 +67,19 @@
 					 <?php 
 						//set session last view para bumalik d2 sa page nato after mag login
 						$_SESSION['lastViewedPage'] = $_SERVER['REQUEST_URI'];
-					 }else { ?>
-					 
-						<a type="button"  href="pbfrReservation.php?id=<?php echo $viewId; ?>"  class="btn btn-primary"
-							<?php if($properties->getstatus() != "Available"){
-								echo 'style="display:none;"';
-							}					
-							?>				
-						
-						>Reserve</a>
-						
-						<?php 
+					 }else { 
+				 		
+				 		if($_SESSION['username'] != 'admin'){
+						 	?>
+							<a type="button"  href="pbfrReservation.php?id=<?php echo $viewId; ?>"  class="btn btn-primary"
+								<?php 
+									if($properties->getstatus() != "Available"){
+										echo 'style="display:none;"';
+									}					
+								?>
+							>Reserve</a>
+							<?php 
+						}
 						//******************************************************************//
 						//*********************** RESERVE Function***************************//
 						//******************************************************************//
@@ -106,7 +108,7 @@
 									
 									$mailAdmin->addAddress(adminEmail);  //send to admin
 									$mailAdmin->isHTML(true);// Set email format to HTML							
-									$mailAdmin->Subject = 'Rervation Request';
+									$mailAdmin->Subject = 'Reservation Request';
 									$mailAdmin->Body    = '<strong>Reservation Request</strong></br>
 															<table>
 																<tr>
@@ -196,7 +198,7 @@
 									
 									$mailCustomer->addAddress($_SESSION['user_email']);  //send to customer
 									$mailCustomer->isHTML(true);// Set email format to HTML							
-									$mailCustomer->Subject = 'Rervation Request';
+									$mailCustomer->Subject = 'Reservation Request';
 									$mailCustomer->Body    = '<strong>Reservation Request</strong></br>
 															Your reservation request for '. $properties->gettitle() .' has been submitted</br>
 															We will update you through email as soon as we process your reservation request.
@@ -333,6 +335,7 @@
 				<iframe class="pantourDiv1" src="<?php echo linkbasepath; ?>panotour/<?php echo $properties->getpanotour()?>.html" width="100%" height="500"  allowFullScreen></iframe>
 			</div>
 		</div>	
+		<a class="btn btn-default" href="moreinfo.php?page=<?php echo str_replace(' ', '-', strtolower($properties->getunit_type()));?>" role="button">More Info</a>
 		</br>
 	
 	

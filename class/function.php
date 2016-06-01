@@ -34,18 +34,24 @@
 	}
 	
 	function ticketDisplay($val){
+
 		if($val == 0){
 			return "Pending";
 		}
 
 		if($val == 1){
-					return "Rejected";
+			return "Rejected";
 		}	
 
 		if($val == 2){
-					return "Approved";
-		}			
-	
+			return "Approved";
+		}		
+			
+		if($val == 3){
+			return "Lapsed";
+		}	
+		
+		
 	}
 	
 	function typeofpaymentDisplay($val){
@@ -266,194 +272,209 @@
 	
 	}
 
-	function upcomingbillEmail($paymentId){
-			$payment = new payment();	
-			$payment->selectOne($paymentId);	
+	function upcomingbillEmail($paymentId, $id = NULL){
+			$payment = new payment();
+			if(empty($id)){
+				$payment->selectOne($paymentId);	
+			}else{
+				$payment->selectOneField('user_id', trim($paymentId));	
+			}
+			$pId = $payment->getid();
+			if(!empty($pId)){
+				pesoFormat($payment->getprice()); 
 			
-			pesoFormat($payment->getprice()); 
-			
-			//properties
-			$properties = new properties();	
-			$properties->selectOne($payment->getproperties_id());
-			 
-			//get ticket
-			$ticket = new ticket();				
-			$ticket->selectOne($payment->getticket_id());			
-			
-			
-			//user
-			$userId = new user();	
-			$userId->selectOne($payment->getuser_id());
-			
-			//get from ticket
-			$pbfr = new pbfr();	
-			$pbfr->selectOne($ticket->getpbfr_id());		
-	
-			
-			
-			$mailCustomer = new PHPMailer;
-			$mailCustomer->From = fromSystemEmail;
-			$mailCustomer->FromName = 'Suntrust';	
+				//properties
+				$properties = new properties();	
+				$properties->selectOne($payment->getproperties_id());
+				 
+				//get ticket
+				$ticket = new ticket();				
+				$ticket->selectOne($payment->getticket_id());			
 				
-			
-			$mailCustomer->addAddress($userId->getemail());  //send to customer
-			$mailCustomer->isHTML(true);// Set email format to HTML							
-			$mailCustomer->Subject = 'Upcoming Bill Notification';
-			$mailCustomer->Body    = '
-									
-									<table>
-										<tr>
-											<td>
-												<img src="http://suntrustph.com/images/logo.png" class="suntrust"> </br>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												Good day! We would like to remind you about the upcoming due date for your payment.												
-											</td>
-										</tr>
+				
+				//user
+				$userId = new user();	
+				$userId->selectOne($payment->getuser_id());
+				
+				//get from ticket
+				$pbfr = new pbfr();	
+				$pbfr->selectOne($ticket->getpbfr_id());		
+		
+				
+				
+				$mailCustomer = new PHPMailer;
+				$mailCustomer->From = fromSystemEmail;
+				$mailCustomer->FromName = 'Suntrust';	
+					
+				
+				$mailCustomer->addAddress($userId->getemail());  //send to customer
+				$mailCustomer->isHTML(true);// Set email format to HTML							
+				$mailCustomer->Subject = 'Upcoming Bill Notification';
+				$mailCustomer->Body    = '
 										
-										<tr>																						
-											'. billCalcu($payment->getprice(),$payment->gettype_of_payment()) .'
-										</tr>										
-									
-										<tr>
-											<td>
-												&nbsp;
-											</td>
-										</tr>
-									</table>									
-									
-								
-									<table>
-										<tr>
-											<td>
-												Details
-											</td>
-										</tr>
-										<tr>
-											<td>
-												Tracking Id :
-											</td>
-											<td>
-												' . $payment->getticket_id() .'
-											</td>
-										</tr>
-										<tr>  
-											<td>
-												Customer username :
-											</td>
-											<td>
-												' . $userId->getusername() .'
-											</td>
-										</tr>
-										<tr>
-											<td>
-												Customer Email :
-											</td>
-											<td>
-												' . $userId->getemail() .'
-											</td>
-										</tr>
-									
-										<tr>
-											<td>
-												Property  Name :
-											</td>
-											<td>
-												' . $properties->gettitle() .'
-											</td>
-										</tr>
-										<tr>
-											<td>
-												Property Unit Type :
-											</td>
-											<td>
-												' . $properties->getunit_type() .'
-											</td>
-										</tr>
-										<tr>
-											<td>
-												Property  location :
-											</td>
-											<td>
-												' . $properties->getlocation() .'
-											</td>
-										</tr>
-										<tr>
-											<td>
-												Property  Price :
-											</td>
-											<td>
-												' . pesoFormat($properties->getprice()) .'
-											</td>
-										</tr>
+										<table>
+											<tr>
+												<td>
+													<img src="http://suntrustph.com/images/logo.png" class="suntrust"> </br>
+												</td>
+											</tr>
+											<tr>
+												<td>
+													Good day! We would like to remind you about the upcoming due date for your payment.												
+												</td>
+											</tr>
+											
+											<tr>																						
+												'. billCalcu($payment->getprice(),$payment->gettype_of_payment()) .'
+											</tr>										
 										
-										<tr>
-											<td>
-												Building :
-											</td>
-											<td>
-												' . $pbfr->getbuilding() .'
-											</td>
-										</tr>
-										<tr>
-											<td>
-												Floor :
-											</td>
-											<td>
-												' . $pbfr->getfloor() .'
-											</td>
-										</tr>
-										<tr>
-											<td>
-												Room :
-											</td>
-											<td>
-												' . $pbfr->getroom() .'
-											</td>
-										</tr>
-										<tr>
-											<td>
-												Date Updated :
-											</td>
-											<td>
-												' . date('Y-m-d H:i:s') .'
-											</td>
-										</tr>			
-										 									
-									</table>	
+											<tr>
+												<td>
+													&nbsp;
+												</td>
+											</tr>
+										</table>									
+										
+									
+										<table>
+											<tr>
+												<td>
+													Details
+												</td>
+											</tr>
+											<tr>
+												<td>
+													Tracking Id :
+												</td>
+												<td>
+													' . $payment->getticket_id() .'
+												</td>
+											</tr>
+											<tr>  
+												<td>
+													Customer username :
+												</td>
+												<td>
+													' . $userId->getusername() .'
+												</td>
+											</tr>
+											<tr>
+												<td>
+													Customer Email :
+												</td>
+												<td>
+													' . $userId->getemail() .'
+												</td>
+											</tr>
+										
+											<tr>
+												<td>
+													Property  Name :
+												</td>
+												<td>
+													' . $properties->gettitle() .'
+												</td>
+											</tr>
+											<tr>
+												<td>
+													Property Unit Type :
+												</td>
+												<td>
+													' . $properties->getunit_type() .'
+												</td>
+											</tr>
+											<tr>
+												<td>
+													Property  location :
+												</td>
+												<td>
+													' . $properties->getlocation() .'
+												</td>
+											</tr>
+											<tr>
+												<td>
+													Property  Price :
+												</td>
+												<td>
+													' . pesoFormat($properties->getprice()) .'
+												</td>
+											</tr>
+											
+											<tr>
+												<td>
+													Building :
+												</td>
+												<td>
+													' . $pbfr->getbuilding() .'
+												</td>
+											</tr>
+											<tr>
+												<td>
+													Floor :
+												</td>
+												<td>
+													' . $pbfr->getfloor() .'
+												</td>
+											</tr>
+											<tr>
+												<td>
+													Room :
+												</td>
+												<td>
+													' . $pbfr->getroom() .'
+												</td>
+											</tr>
+											<tr>
+												<td>
+													Date Updated :
+												</td>
+												<td>
+													' . date('Y-m-d H:i:s') .'
+												</td>
+											</tr>			
+											 									
+										</table>	
 
-									<table>
-										<tr>									
-											<td>
-												&nbsp;
-											</td>
-										</tr>	
-										<tr>									
-											<td>
-												Please disregard this email if you have already paid your due balance.
-											</td>
-										</tr>	
-										<tr>									
-											<td>
-												&nbsp;
-											</td>
-										</tr>	
-									</table>
-									
-									<table>
-										<tr>
-											<td>
-												<img src="http://suntrustph.com/images/iconbox.jpg" class="suntrust">
-											</td>
-											<td>
-												&nbsp;Copyright 2015. Suntrust Properties, Inc. All Rights Reserved.
-											</td>
-										</tr>	
-									</table>'									
-							;						
-				$mailCustomer->send();
+										<table>
+											<tr>									
+												<td>
+													&nbsp;
+												</td>
+											</tr>	
+											<tr>									
+												<td>
+													Please disregard this email if you have already paid your due balance.
+												</td>
+											</tr>	
+											<tr>									
+												<td>
+													&nbsp;
+												</td>
+											</tr>	
+										</table>
+										
+										<table>
+											<tr>
+												<td>
+													<img src="http://suntrustph.com/images/iconbox.jpg" class="suntrust">
+												</td>
+												<td>
+													&nbsp;Copyright 2015. Suntrust Properties, Inc. All Rights Reserved.
+												</td>
+											</tr>	
+										</table>'									
+								;						
+					$mailCustomer->send();
+					return true;
+			}else{
+				echo "<div class='alert alert-danger alert-dismissible' role='alert'>
+						  <button type='button' class='close' data-dismiss='alert'><span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span></button>
+						  <strong>No properties linked to this account</strong>
+						</div>";
+					return false;
+			}
+			
+			
 	
 	}
 	

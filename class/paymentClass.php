@@ -169,7 +169,7 @@ class payment{
 	
 	
 	public function selectOneField($field,$fieldvalue,$criteria = null){
-	  $sql =  "SELECT * FROM payment WHERE ".$field." = ' ".$fieldvalue."'";
+	  $sql =  "SELECT * FROM payment WHERE {$field} = {$fieldvalue}";
 	  if ($criteria){
 		 $sql.= " " . $criteria;
 	  } 

@@ -1,9 +1,9 @@
-<?php 		
-include_once("database.php");
-class properties{ 
-
-	// **********************
-	// ATTRIBUTE DECLARATION
+<?php 		
+include_once("database.php");
+class properties{ 
+
+	// **********************
+	// ATTRIBUTE DECLARATION
 	// **********************
 	var $id;
 	var $panotour;
@@ -14,102 +14,102 @@ class properties{
 	var $price;
 	var $status;
 	var $created_at;
-	var $database; // Instance of class database	
+	var $database; // Instance of class database	
 
-	// **********************
-	// CONSTRUCTOR METHOD
-	// **********************
+	// **********************
+	// CONSTRUCTOR METHOD
+	// **********************
 	
-	function properties(){
-		$this->database = new Database();
-	}	
-	
+	function properties(){
+		$this->database = new Database();
+	}	
+	
 
-	// **********************
-	// GETTER METHODS
-	// **********************
+	// **********************
+	// GETTER METHODS
+	// **********************
 	
-	function getid(){
-		return $this->id;
-	}
+	function getid(){
+		return $this->id;
+	}
 	
-	function getpanotour(){
-		return $this->panotour;
-	}
+	function getpanotour(){
+		return $this->panotour;
+	}
 	
-	function gettitle(){
-		return $this->title;
-	}
+	function gettitle(){
+		return $this->title;
+	}
 	
-	function getimg_name(){
-		return $this->img_name;
-	}
+	function getimg_name(){
+		return $this->img_name;
+	}
 	
-	function getunit_type(){
-		return $this->unit_type;
-	}
+	function getunit_type(){
+		return $this->unit_type;
+	}
 	
-	function getlocation(){
-		return $this->location;
-	}
+	function getlocation(){
+		return $this->location;
+	}
 	
-	function getprice(){
-		return $this->price;
-	}
+	function getprice(){
+		return $this->price;
+	}
 	
-	function getstatus(){
-		return $this->status;
-	}
+	function getstatus(){
+		return $this->status;
+	}
 	
-	function getcreated_at(){
-		return $this->created_at;
-	}
-		
+	function getcreated_at(){
+		return $this->created_at;
+	}
+		
 
-	// **********************
-	// SETTER METHODS
-	// **********************
+	// **********************
+	// SETTER METHODS
+	// **********************
 	
-	function setid($id){
-		return $this->id = $id;
-	}
+	function setid($id){
+		return $this->id = $id;
+	}
 	
-	function setpanotour($panotour){
-		return $this->panotour = $panotour;
-	}
+	function setpanotour($panotour){
+		return $this->panotour = $panotour;
+	}
 	
-	function settitle($title){
-		return $this->title = $title;
-	}
+	function settitle($title){
+		return $this->title = $title;
+	}
 	
-	function setimg_name($img_name){
-		return $this->img_name = $img_name;
-	}
+	function setimg_name($img_name){
+		return $this->img_name = $img_name;
+	}
 	
-	function setunit_type($unit_type){
-		return $this->unit_type = $unit_type;
-	}
+	function setunit_type($unit_type){
+		return $this->unit_type = $unit_type;
+	}
 	
-	function setlocation($location){
-		return $this->location = $location;
-	}
+	function setlocation($location){
+		return $this->location = $location;
+	}
 	
-	function setprice($price){
-		return $this->price = $price;
-	}
+	function setprice($price){
+		return $this->price = $price;
+	}
 	
-	function setstatus($status){
-		return $this->status = $status;
-	}
+	function setstatus($status){
+		return $this->status = $status;
+	}
 	
-	function setcreated_at($created_at){
-		return $this->created_at = $created_at;
-	}
-	
+	function setcreated_at($created_at){
+		return $this->created_at = $created_at;
+	}
+	
 
-	// **********************
-	// INIT METHODS
-	// **********************		
+	// **********************
+	// INIT METHODS
+	// **********************		
 
 	public function init($row){
 		$this->id = $row->id; 
@@ -120,72 +120,72 @@ class properties{
 		$this->location = $row->location; 
 		$this->price = $row->price; 
 		$this->status = $row->status; 
-		$this->created_at = $row->created_at; 	
-	}	
-
-	// ***************************
-	//  SELECT METHOD / LOAD ALL
-	// ***************************
-	
-	public function selectAll($criteria = null){
-		$objarray = array(); // list of objects
-		$sql =  "SELECT * FROM properties";
-				
-		if ($criteria){
-			$sql.= " " . $criteria;
-		}		
-		$result =  $this->database->query($sql);
-		$result = $this->database->result;
-		while($row = mysql_fetch_object($result)){
-			$properties = new properties();
-			$properties->init($row);
-			array_push($objarray,$properties);
-		}
-		return $objarray;
-	}
-		
-
-	// ***************************
-	//  SELECT METHOD / LOAD ONE
-	// ***************************
-	
-	public function selectOne($id,$criteria = null){
-	  $sql =  "SELECT * FROM properties WHERE id = ".$id;
-	  if ($criteria){
-		 $sql.= " " . $criteria;
-	  } 		
-	  $result =  $this->database->query($sql);
-	  $result = $this->database->result;
-	  $this->init(mysql_fetch_object($result));  
-	}
-	
-	
-	public function selectOneField($field,$fieldvalue,$criteria = null){
-	  $sql =  "SELECT * FROM properties WHERE ".$field." = ' ".$fieldvalue."'";
-	  if ($criteria){
-		 $sql.= " " . $criteria;
-	  } 
-	  $result =  $this->database->query($sql);
-	  $result = $this->database->result;
-	  error_reporting(0);
-	  $this->init(mysql_fetch_object($result));  
-	}
-		
-
-	// **********************
-	// DELETE
-	// **********************
-	function delete($id){
-		$sql = "DELETE FROM properties WHERE id = ".$id;
-		$result = $this->database->query($sql);
-	}
-		
-
-	// **********************
-	// INSERT
-	// **********************
-	function insert(){
-		$sql = "INSERT INTO properties (id,panotour,title,img_name,unit_type,location,price,status,created_at)  
+		$this->created_at = $row->created_at; 	
+	}	
+
+	// ***************************
+	//  SELECT METHOD / LOAD ALL
+	// ***************************
+	
+	public function selectAll($criteria = null){
+		$objarray = array(); // list of objects
+		$sql =  "SELECT * FROM properties";
+				
+		if ($criteria){
+			$sql.= " " . $criteria;
+		}		
+		$result =  $this->database->query($sql);
+		$result = $this->database->result;
+		while($row = mysql_fetch_object($result)){
+			$properties = new properties();
+			$properties->init($row);
+			array_push($objarray,$properties);
+		}
+		return $objarray;
+	}
+		
+
+	// ***************************
+	//  SELECT METHOD / LOAD ONE
+	// ***************************
+	
+	public function selectOne($id,$criteria = null){
+	  $sql =  "SELECT * FROM properties WHERE id = ".$id;
+	  if ($criteria){
+		 $sql.= " " . $criteria;
+	  } 		
+	  $result =  $this->database->query($sql);
+	  $result = $this->database->result;
+	  $this->init(mysql_fetch_object($result));  
+	}
+	
+	
+	public function selectOneField($field,$fieldvalue,$criteria = null){
+	  $sql =  "SELECT * FROM properties WHERE ".$field." = ' ".$fieldvalue."'";
+	  if ($criteria){
+		 $sql.= " " . $criteria;
+	  } 
+	  $result =  $this->database->query($sql);
+	  $result = $this->database->result;
+	  error_reporting(0);
+	  $this->init(mysql_fetch_object($result));  
+	}
+		
+
+	// **********************
+	// DELETE
+	// **********************
+	function delete($id){
+		$sql = "DELETE FROM properties WHERE id = ".$id;
+		$result = $this->database->query($sql);
+	}
+		
+
+	// **********************
+	// INSERT
+	// **********************
+	function insert(){
+		$sql = "INSERT INTO properties (id,panotour,title,img_name,unit_type,location,price,status,created_at)  
 				VALUES(
 						'". $this->id ."',
 						'". $this->panotour ."',
@@ -195,17 +195,17 @@ class properties{
 						'". $this->location ."',
 						'". $this->price ."',
 						'". $this->status ."',
-						'". $this->created_at ."'
-						)";		
-		$result = $this->database->query($sql);
-		$this->document_id = mysql_insert_id($this->database->link);
-	}
-		
-
-	// **********************
-	// UPDATE
-	// **********************
-	function update($id){
+						'". $this->created_at ."'
+						)";		
+		$result = $this->database->query($sql);
+		$this->document_id = mysql_insert_id($this->database->link);
+	}
+		
+
+	// **********************
+	// UPDATE
+	// **********************
+	function update($id){
 		$sql = " UPDATE properties SET 					
 					panotour = '". $this->panotour ."',
 					title = '". $this->title ."',
@@ -215,9 +215,9 @@ class properties{
 					price = '". $this->price ."',
 					status = '". $this->status ."',
 	 				created_at = '". $this->created_at ."'
-		
-					WHERE id = ".$id;		
-		$result = $this->database->query($sql);
-	}	
+		
+					WHERE id = ".$id;		
+		$result = $this->database->query($sql);
+	}	
 	
  }?>

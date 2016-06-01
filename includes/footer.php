@@ -3,9 +3,9 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-4">
-						<h4> Suntrust Properties, Inc.</h4>
+						<h4><br>Suntrust Properties, Inc.</h4>
 						<p>
-						Suntrust Properties, Inc. (SPI) is a 100% wholly-owned subsidiary of Megaworld Corporation, a company under the umbrella of the Alliance Global Inc.
+						Suntrust Properties, Inc. (SPI) is a 100% wholly-owned subsidiary <br><br>of Megaworld Corporation, a company under the umbrella of the <br><br>Alliance Global Inc.
 
 						</p>
 					</div>
@@ -13,7 +13,7 @@
 						
 					</div>
 					<div class="col-md-4">
-						<h4>Quick Links</h4>
+						<h4><br>Quick Links</h4>
 						<ul class="footerMenu">
 							<li><a href="veiwlistproperty.php"><i class="fa fa-angle-double-right"></i> Properties</a></li>
 							<li><a href="index.php?page=about"><i class="fa fa-angle-double-right"></i> About Us</a></li>

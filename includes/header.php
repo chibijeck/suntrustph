@@ -38,6 +38,8 @@
 	
 	<!-- JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/validator.js"></script>
 
@@ -114,7 +116,8 @@
 									<li><a href="manageProperties.php">Manage Properties</a></li>					
 									<li><a href="manageTicket.php">Manage Ticket</a></li>
 									<li><a href="managePayment.php">Manage Payment</a></li>
-									<li><a href="/manageEmailnotif.php?action=editpage&id=1">Scheduled Notification</a></li>
+									<li><a href="manageEmailnotif.php?action=editpage&id=1">Scheduled Notification</a></li>
+									<li><a href="manageEmailnotif.php?action=sendemail">Resend Email</a></li>
 								<?php } ?>
 								
 								<li><a href="login.php?action=logout">Log Out</a></li>							
@@ -226,10 +229,11 @@
 		   function theFunction(){		    
 			   $('.updateThisTime').load('includes/clock.php');
 			   $('.emailNotif').load('billNotif.php');
-		   }          
+			   $('.emailNotif').load('sendEmailLapsed.php');
+			}          
 		   
 		   //run every 1 second        
-		   setInterval(theFunction, 1000);  
+		   setInterval(theFunction, 1000);
 			
 			//Upon Page load, Check first if value for filter is set.
 			$('select.unit_typeFilter').val('<?php echo empty($_GET['unitType']) ? '' : $_GET['unitType'];?>');
