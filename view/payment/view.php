@@ -18,7 +18,8 @@
 		<tbody>
 			<?php 
 				$payment = new payment();									
-				$payment = $payment->selectAll('ORDER BY created_at DESC');	
+				//$payment = $payment->selectAll('ORDER BY created_at DESC');	
+				$payment = $payment->selectPayment('ORDER BY p.id DESC');
 				foreach($payment as $row){	
 				?>
 			<tr>

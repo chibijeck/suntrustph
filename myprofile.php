@@ -12,6 +12,7 @@
 							 <li><a href="myprofile.php">Profile</a></li>
 							 <li><a href="myprofile.php?action=ticket">Ticket</a></li>
 							 <li><a href="myprofile.php?action=payment">Payment</a></li>				 
+						 	 <li><a href="myprofile.php?action=transaction">Transactions</a></li>
 						</ul>
 					</div>
 				</div>
@@ -40,6 +41,9 @@
 									break;
 								case "payment":
 									include(rootpath . "view/myprofile/payment.php");
+									break;
+								case "transaction":
+									include(rootpath . "view/myprofile/transactions.php");
 									break;
 								case "editpagepayment":
 									include(rootpath . "view/myprofile/editpagepayment.php");

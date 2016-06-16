@@ -69,7 +69,7 @@
 							<select class="form-control buildinPFilter" placeholder=".input-sm">								
 								<?php 
 									$pbfrBuilding = new pbfr();									
-									$pbfrBuilding = $pbfrBuilding->selectAllFullQuery('SELECT DISTINCT building FROM pbfr WHERE properties_id =' . $viewId . '');	
+									$pbfrBuilding = $pbfrBuilding->selectAllFullQuery('SELECT DISTINCT building FROM pbfr WHERE status = 0 AND properties_id =' . $viewId . '');	
 									foreach($pbfrBuilding as $row){	
 								?>
 										
@@ -84,7 +84,7 @@
 							<select class="form-control floorPFilter" placeholder=".input-sm">										
 										<?php 
 											$pbfrFloor = new pbfr();									
-											$pbfrFloor = $pbfrFloor->selectAllFullQuery('SELECT DISTINCT floor FROM pbfr WHERE properties_id =' . $viewId . ' AND building = ' . $getBuilding);	
+											$pbfrFloor = $pbfrFloor->selectAllFullQuery('SELECT DISTINCT floor FROM pbfr WHERE status = 0 AND properties_id =' . $viewId . ' AND building = ' . $getBuilding);	
 											foreach($pbfrFloor as $row){	
 										?>
 												
@@ -106,7 +106,7 @@
 			<?php 		
 				
 				$pbfrRoom = new pbfr();									
-				$pbfrRoom = $pbfrRoom->selectAllFullQuery('SELECT* FROM pbfr WHERE properties_id =' . $viewId . ' AND building = ' . $getBuilding . ' AND floor = ' . $getFloor . ' ORDER BY room ASC');	
+				$pbfrRoom = $pbfrRoom->selectAllFullQuery('SELECT* FROM pbfr WHERE status = 0 AND properties_id =' . $viewId . ' AND building = ' . $getBuilding . ' AND floor = ' . $getFloor . ' ORDER BY room ASC');	
 				foreach($pbfrRoom as $row){	
 			?>				
 			<form role="form" method="post" action="pbfrReservationProcess.php">	

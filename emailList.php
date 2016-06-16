@@ -16,5 +16,3 @@ if(!empty( $name )){
 }
 
 //print_r($user->getemail());
-
-?>

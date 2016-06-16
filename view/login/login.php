@@ -1,8 +1,8 @@
 
 <div class="container mainBody">		
 			<div class="row">
-				  <div class="col-md-3"></div>
-				  <div class="col-md-6">
+				  <div class="col-md-4"></div>
+				  <div class="col-md-4">
 				  <?php 							
 					if(isset($_POST['loginBtn'])){					
 							$username = $_POST['username']; //from form field user
@@ -67,8 +67,10 @@
 					}
 						
 				?>
-					<div class="panel panel-default">
-					  <div class="panel-heading"><h2>Login</h2></div>					
+					<div class="panel panel-info">
+					  <div class="panel-heading">
+					  	<h3 class="panel-title">Login</h3>
+					  </div>					
 					  <div class="panel-body">						
 							<form class="registerForm" method="post" action="<?php echo $_SERVER['REQUEST_URI'];?>" name="loginform" id="loginform" data-toggle="validator">		
 								  <div class="form-group">
@@ -78,16 +80,62 @@
 								  </div>
 								  <div class="form-group">
 									<label for="exampleInputPassword1">Password</label>
+									<a type="submit" data-toggle="modal" data-target="#myModal" href="#" style="float: right;">Forgot password?</a>
 									<input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password" data-error="Password is Required" required>
 									<div class="help-block with-errors"></div>
-								  </div>							  
 									
+								  </div>							  
+								<div class="form-group">
 								  <button type="submit" name="loginBtn"  class="btn btn-default">Log In</button>
-								  <a type="submit" class="btn btn-default" href="login.php?action=register" >Register</a>
+								  <!--<a type="submit" class="btn btn-default" href="login.php?action=register" >Register</a>-->
+								  </div>
 							</form>		
 						</div>
 					</div>
 				  </div>
-				  <div class="col-md-3"></div>
+				  <div class="col-md-4"></div>
 				</div>
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="myModalLabel">Forgot Password?</h4>
+			</div>
+	  		<form role="form" method="post" action="<?php echo $_SERVER['REQUEST_URI'] ?>">
+	  			<div class="modal-body">
+					<div class="form-group">
+						<label for="">Email</label>
+						<input type="text" name="email" class="form-control"  placeholder="Enter email" value="<?php if(isset($_POST['username'])){echo $_POST['username'];};?>" data-error="Email is Required" required>
+						<div class="help-block with-errors"></div>
+					</div>				
+				</div>
+				<div class="modal-footer">
+					<div class="form-group">
+						<button type="submit" name="forgotBtn" class="btn btn-default">Submit</button>	
+						<!--<button type="submit" name="forgotBtn" class="btn btn-default" data-dismiss="modal">Submit</button>	-->
+					</div>
+				</div>
+			</form>
+	  </div>
+	</div>
+</div>
+<?php
+	if(isset($_POST['forgotBtn'])){
+		echo "<script>alert('Password has been sent to ".$_POST['email']."');</script>";
+			$mailCustomer = new PHPMailer;
+			$mailCustomer->From = fromSystemEmail;
+			$mailCustomer->FromName = 'Suntrust';	
+			
+			$mailCustomer->addAddress($_POST['email']);  //send to customer
+			$mailCustomer->isHTML(true);// Set email format to HTML							
+			$mailCustomer->Subject = 'Password Notification';
+			$mailCustomer->Body    = 'Your password is ABCDEF';						
+			$mailCustomer->send();
+			//return true;
+	}
+			
+?>

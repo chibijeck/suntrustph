@@ -42,6 +42,8 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/validator.js"></script>
+	<script src="js/jquery.printPage.js" type="text/javascript"></script>
+
 
 	<!-- Plugins -->		
 		<!-- font Awesome -->
@@ -116,6 +118,7 @@
 									<li><a href="manageProperties.php">Manage Properties</a></li>					
 									<li><a href="manageTicket.php">Manage Ticket</a></li>
 									<li><a href="managePayment.php">Manage Payment</a></li>
+									<!--<li><a href="manageReport.php">Manage Reports</a></li>-->
 									<li><a href="manageEmailnotif.php?action=editpage&id=1">Scheduled Notification</a></li>
 									<li><a href="manageEmailnotif.php?action=sendemail">Resend Email</a></li>
 								<?php } ?>

@@ -7,7 +7,8 @@
 						 <li><a href="manageUser.php">User</a></li>
 						 <li><a href="manageProperties.php">Properties</a></li>
 						 <li><a href="manageTicket.php">Ticket</a></li>
-						 <li><a href="managePayment.php">Payment</a></li>				 
+						 <li><a href="managePayment.php">Payment</a></li>
+						 <li><a href="manageReport.php">Reports</a></li>
 					</ul>
 				</div>
 		</div>
@@ -655,4 +656,212 @@
 		
 	return $msg;
 	
+	}
+	
+	
+	
+	function emailLoanPayment($paymentId,$loanCalculation){
+			$payment = new payment();	
+			$payment->selectOne($paymentId);	
+			
+			pesoFormat($payment->getprice()); 
+			
+			//properties
+			$properties = new properties();	
+			$properties->selectOne($payment->getproperties_id());
+			 
+			//get ticket
+			$ticket = new ticket();				
+			$ticket->selectOne($payment->getticket_id());			
+			
+			
+			//user
+			$userId = new user();	
+			$userId->selectOne($payment->getuser_id());
+			
+			//get from ticket
+			$pbfr = new pbfr();	
+			$pbfr->selectOne($ticket->getpbfr_id());		
+	
+			
+			
+			$mailCustomer = new PHPMailer;
+			$mailCustomer->From = fromSystemEmail;
+			$mailCustomer->FromName = 'Suntrust';	
+				
+			
+			$mailCustomer->addAddress($userId->getemail());  //send to customer
+			$mailCustomer->isHTML(true);// Set email format to HTML							
+			$mailCustomer->Subject = 'Payment Information Notification';
+			$mailCustomer->Body    = '
+									<table>
+										<tr>
+											<td>
+												<img src="http://suntrustph.com/images/logo.png" class="suntrust"> </br>
+											</td>
+										</tr>
+										<tr>
+											<td>
+													Your payment option for '. $properties->gettitle() .' has been changed.
+											</td>
+										</tr>
+										<tr>
+												<table class="table">		  
+			  
+												   <tr>
+														<td>Total Contract Price</td>	
+														<td>'. $loanCalculation['totalPrice'] .'</td>	
+													</tr>
+													
+													<tr>		
+														<td>DP</td>		
+														<td>'.$loanCalculation['dp'].'%</td>
+													</tr>
+													<tr>		
+														<td>Payable within</td>		
+														<td>'.$loanCalculation['payable'].' Months</td>
+													</tr>
+													<tr>		
+														<td>Monthly Payments (DP)</td>		
+														<td>'.$loanCalculation['payDP'].'</td>
+													</tr>
+													<tr>		
+														<td>Loanable Amount</td>		
+														<td>'.$loanCalculation['loan'].'</td>
+													</tr>
+													<tr>		
+														<td>Terms (in Months)</td>		
+														<td>'.$loanCalculation['months'].'</td>
+													</tr>
+													<tr>		
+														<td>Interest Rate</td>		
+														<td>'.$loanCalculation['rate'].'%</td>
+													</tr>
+													<tr>		
+														<td>Monthly Payments (Amortization)</td>		
+														<td>'.$loanCalculation['pay'].'</td>
+													</tr>
+												
+													</table>
+										</tr>
+										<tr>											
+											<td>
+												&nbsp;
+											</td>
+										</tr>
+										
+									</table>			
+								
+									
+									<table>										
+										<tr>											
+											<td>
+												Details
+											</td>
+										</tr>
+										<tr>
+											<td>
+												Tracking Id :
+											</td>
+											<td>
+												' . $payment->getticket_id() .'
+											</td>
+										</tr>
+										<tr>  
+											<td>
+												Customer username :
+											</td>
+											<td>
+												' . $userId->getusername() .'
+											</td>
+										</tr>
+										<tr>
+											<td>
+												Customer Email :
+											</td>
+											<td>
+												' . $userId->getemail() .'
+											</td>
+										</tr>
+									
+										<tr>
+											<td>
+												Property  Name :
+											</td>
+											<td>
+												' . $properties->gettitle() .'
+											</td>
+										</tr>
+										<tr>
+											<td>
+												Property Unit Type :
+											</td>
+											<td>
+												' . $properties->getunit_type() .'
+											</td>
+										</tr>
+										<tr>
+											<td>
+												Property  location :
+											</td>
+											<td>
+												' . $properties->getlocation() .'
+											</td>
+										</tr>
+										<tr>
+											<td>
+												Property  Price :
+											</td>
+											<td>
+												' . pesoFormat($properties->getprice()) .'
+											</td>
+										</tr>
+										
+										<tr>
+											<td>
+												Building :
+											</td>
+											<td>
+												' . $pbfr->getbuilding() .'
+											</td>
+										</tr>
+										<tr>
+											<td>
+												Floor :
+											</td>
+											<td>
+												' . $pbfr->getfloor() .'
+											</td>
+										</tr>
+										<tr>
+											<td>
+												Room :
+											</td>
+											<td>
+												' . $pbfr->getroom() .'
+											</td>
+										</tr>
+										<tr>
+											<td>
+												Date Updated :
+											</td>
+											<td>
+												' . date('Y-m-d H:i:s') .'
+											</td>
+										</tr>	
+									</table>
+
+									</br></br>
+									<table>
+										<tr>
+											<td>
+												<img src="http://suntrustph.com/images/iconbox.jpg" class="suntrust">
+											</td>
+											<td>
+												&nbsp;Copyright 2015. Suntrust Properties, Inc. All Rights Reserved.
+											</td>
+										</tr>	
+									</table>'									
+							;						
+				$mailCustomer->send();
 	}

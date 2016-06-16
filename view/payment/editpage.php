@@ -6,15 +6,17 @@
 	if(isset($_POST['updateUser'])){		
 		try { 					
 		
-			//inesrt sa DB
+			//insert to DB
 			$payment->setproperties_id($_POST["properties_id"]);  		
-			$payment->setuser_id($_POST["user_id"]);  		
-			$payment->setprice($_POST["price"]);  		
+			$payment->setuser_id($_POST["user_id"]);	
+			$payment->setprice($_POST["price"]);  	
+			$payment->setcreated_at(date('Y-m-d H:i:s'));
 			// $payment->setbuilding($_POST["building"]);  		
 			// $payment->setfloor($_POST["floor"]);  		
 			// $payment->setroom_number($_POST["room_number"]);  		
 			$payment->settype_of_payment($_POST["type_of_payment"]);  			
-			$payment->update($toUpdateId);	
+			//$payment->update($toUpdateId);
+			$payment->insert();	
 			
 			paymentStatusEmail($toUpdateId);	
 			 
@@ -83,6 +85,7 @@
 							value="<?php echo $row->getid(); ?>"><?php echo $row->getusername(); ?></option>		
 						<?php } ?>
 					</select>
+					<input type="hidden" class="form-control" value="<?php echo $payment->getuser_id(); ?>" name="user_id">
 				</div>	
 				
 				<div class="form-group">
@@ -109,6 +112,7 @@
 					<div class="help-block with-errors"></div>
 				</div-->		
 				
+				<span style="float: right;"><a type="button" class="btn btn-primary" href="<?php echo "loanCalculator.php?id=".$toUpdateId;?>">Custom Payment</a></span>
 				
 				<div class="form-group">
 					<label for="exampleInputEmail1">Type of Payment  <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">More Info</button></label>							

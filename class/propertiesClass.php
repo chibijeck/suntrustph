@@ -218,6 +218,45 @@ class properties{
 		
 					WHERE id = ".$id;		
 		$result = $this->database->query($sql);
-	}	
+	}
+	
+	// ***************************
+	//  select properties by group
+	// ***************************
+	
+	public function countProperties($criteria = null){
+		$objarray = array(); // list of objects
+		$sql =  "SELECT *, count(*) as count
+					FROM `pbfr`
+					group by properties_id,status,building,floor
+					order by properties_id,building,floor asc";
+				
+		if ($criteria){
+			$sql.= " " . $criteria;
+		}		
+		$result =  $this->database->query($sql);
+		$result = $this->database->result;
+		while($row = mysql_fetch_object($result)){
+			// $properties = new properties();
+			// $properties->init($row);
+			// array_push($objarray,$properties);
+			array_push($objarray,$row);
+		}
+		return $objarray;
+	}
+	public function getTitleName($property_id, $criteria=null){
+		$objarray = array(); // list of objects
+		$sql =  "SELECT * FROM `properties` where id = '{$property_id}' ";
+				
+		if ($criteria){
+			$sql.= " " . $criteria;
+		}		
+		$result =  $this->database->query($sql);
+		$result = $this->database->result;
+		//while($row = mysql_fetch_object($result)){
+		//	array_push($objarray,$row);
+		//}
+		return mysql_fetch_object($result);
+	}
 	
  }?>

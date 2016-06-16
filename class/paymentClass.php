@@ -152,6 +152,31 @@ class payment{
 		return $objarray;
 	}
 		
+	public function selectPayment($criteria = null){
+		$objarray = array(); // list of objects
+		$sql =  "SELECT  p.*
+					FROM payment p
+				        INNER JOIN 
+				        (
+				            SELECT  id,properties_id,user_id,price,type_of_payment,ticket_id,MAX(created_at) mxdate
+				            FROM    payment
+				            GROUP   BY ticket_id
+				        ) p1 
+				                ON p.properties_id = p1.properties_id
+				                AND p.created_at = p1.mxdate";
+				
+		if ($criteria){
+			$sql.= " " . $criteria;
+		}		
+		$result =  $this->database->query($sql);
+		$result = $this->database->result;
+		while($row = mysql_fetch_object($result)){
+			$payment = new payment();
+			$payment->init($row);
+			array_push($objarray,$payment);
+		}
+		return $objarray;
+	}
 
 	// ***************************
 	//  SELECT METHOD / LOAD ONE
@@ -193,9 +218,8 @@ class payment{
 	// INSERT
 	// **********************
 	function insert(){
-		$sql = "INSERT INTO payment (id,properties_id,user_id,price,building,floor,room_number,type_of_payment,created_at,ticket_id)  
+		$sql = "INSERT INTO payment (properties_id,user_id,price,building,floor,room_number,type_of_payment,created_at,ticket_id)  
 				VALUES(
-						'". $this->id ."',
 						'". $this->properties_id ."',
 						'". $this->user_id ."',
 						'". $this->price ."',
@@ -223,7 +247,7 @@ class payment{
 					floor = '". $this->floor ."',
 					room_number = '". $this->room_number ."',
 					type_of_payment = '". $this->type_of_payment ."',
-	 				created_at = '". $this->created_at ."'
+	 				created_at = '". date('Y-m-d H:i:s')/**$this->created_at*/ ."'
 		
 					WHERE id = ".$id;		
 		$result = $this->database->query($sql);

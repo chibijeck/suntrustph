@@ -23,9 +23,9 @@
 		<form role="form" method="post" action="<?php echo $_SERVER["REQUEST_URI"] ?>" data-toggle="validator">		
 	 		<div class="form-group">
 				<label for="email">Name</label>
+				<div id="emaildisplay" name="emaildisplay" class='help-block with-errors'></div>
 				<input type="text" value="" class="form-control" onkeyup="theFunction()" id="getemail" placeholder="Resend email? Search for name">
 				<!-- <input type="text" value="" class="form-control" id="emaildisplay" placeholder=""  data-error="Required" required> -->
-				<div id="emaildisplay" name="emaildisplay" class='help-block with-errors'></div>
 				<input type="hidden" value="" id="email" name="email">
 				<script>
 				function theFunction(){

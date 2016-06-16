@@ -12,7 +12,7 @@
 ?>
 <script>
 	alert("Logged out Successful");
-	window.location.replace("http://suntrustph.com/");
+	window.location.replace("/");
 </script>';
 <!-- <div class="container mainBody">		
 			<div class="row">

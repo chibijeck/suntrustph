@@ -22,7 +22,7 @@ Payment
 				$currentUsername = $_SESSION['username'];
 				
 				$payment = new payment();									
-				$payment = $payment->selectAll('WHERE user_id = "'.$currentUserid.'" ORDER BY created_at DESC');	
+				$payment = $payment->selectPayment('WHERE p.user_id = "'.$currentUserid.'" ORDER BY p.id DESC');	
 				if(!empty($payment)){
 						foreach($payment as $row){	
 						?>

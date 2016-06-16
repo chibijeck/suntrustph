@@ -17,7 +17,7 @@
 							<a class="btn btn-default" href="manageUser.php?action=view" role="button">View All</a>
 							<a class="btn btn-default" href="manageUser.php?action=add" role="button">Add</a>
 							<a class="btn btn-default" href="manageUser.php?action=edit" role="button">Edit</a>
-							<!-- <a class="btn btn-default" href="manageUser.php?action=delete" role="button">Delete</a> -->
+							 <a class="btn btn-default" href="manageUser.php?action=delete" role="button">Delete</a> 
 						  </div>
 						<?php		
 							if(isset($_GET['action'])){

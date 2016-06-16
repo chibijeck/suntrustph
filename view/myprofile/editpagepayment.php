@@ -7,9 +7,11 @@
 		try { 					
 		
 			//inesrt sa DB
+			//$payment->setid($toUpdateId);
 			$payment->setproperties_id($_POST["properties_id"]);  		
 			$payment->setuser_id($_POST["user_id"]);  		
-			$payment->setprice($_POST["price"]);  		
+			$payment->setprice($_POST["price"]); 
+			$payment->setcreated_at(date('Y-m-d H:i:s'));
 			// $payment->setbuilding($_POST["building"]);  		
 			// $payment->setfloor($_POST["floor"]);  		
 			// $payment->setroom_number($_POST["room_number"]);  		
@@ -17,7 +19,7 @@
 			
 			paymentStatusEmail($toUpdateId);	
 			
-			$payment->update($toUpdateId);	
+			$payment->insert();	
 			?>		
 			<div class="alert alert-success alert-dismissible" role="alert">
 			  <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
@@ -63,9 +65,11 @@
 					<div class="help-block with-errors"></div>
 				</div-->		
 				
-				
+					
 				<div class="form-group">
-					<label for="exampleInputEmail1">Type of Payment  <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">More Info</button></label>							
+					<label for="exampleInputEmail1">Type of Payment  
+					<button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">More Info</button>
+					</label>							
 					<select  class="form-control" name="type_of_payment" >																										
 						<option value="1" <?php if($payment->gettype_of_payment() == 1){ echo "selected=selected"; } ?>>Option 1 (25/75)</option>							
 						<option value="2" <?php if($payment->gettype_of_payment() == 2){ echo "selected=selected"; } ?>>Option 2 (STEP-UP 25% DP)</option>							
