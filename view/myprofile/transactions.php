@@ -1,7 +1,25 @@
 <h3>
-Transactions
+Transactions / Payment History
 </h3>
-Filter By: []
+<script>
+    $(function()
+    {
+           $( ".datepicker" ).datepicker({
+              showOn: "button",
+              buttonImage: "images/iconbox.jpg",
+              buttonImageOnly: true
+            });
+    });   
+
+    </script>
+<form method="POST">
+	<input type="text" class="datepicker" name='from' size='9' value="" />
+    <input type="text" class="datepicker" name='to' size='9' value="" />
+	<!--Filter By:-->
+	<!--<input type="date" id="datepicker" name='from' value="" /> -->
+	<input type="submit" name="datePick" value="Submit"/>
+</form>
+
 <div class="table-responsive">
 	<table class="table table-bordered table-hover">
 		<thead>
@@ -22,9 +40,19 @@ Filter By: []
 			<?php 
 				$currentUserid = $_SESSION['user_id'];
 				$currentUsername = $_SESSION['username'];
-				
 				$payment = new payment();									
-				$payment = $payment->selectAll('WHERE user_id = "'.$currentUserid.'" ORDER BY id DESC');	
+					
+				if(!empty($_POST['datePick'])){
+					$from = explode("/",$_POST['from']);
+					$from = $from[2].'-'.$from[0].'-'.$from[1];
+					$to = explode("/",$_POST['to']);
+					$to = $to[2].'-'.$to[0].'-'.$to[1];
+					$payment = $payment->selectAll('WHERE user_id = "'.$currentUserid.'" AND DATE(created_at) >= "'.$from.'" AND DATE(created_at) <= "'.$to.'" ORDER BY id DESC');
+					
+				}else {
+					$payment = $payment->selectAll('WHERE user_id = "'.$currentUserid.'" ORDER BY id DESC');	
+				}
+				
 				if(!empty($payment)){
 						foreach($payment as $row){	
 						?>
