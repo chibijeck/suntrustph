@@ -64,7 +64,7 @@
 					<input type="text" class="form-control"  value="<?php echo $payment->getroom_number(); ?>" name="room_number" placeholder=""  data-error="Required" required>
 					<div class="help-block with-errors"></div>
 				</div-->		
-				
+				<!-- <span style="float: right;"><a type="button" class="btn btn-primary" href="<?php echo "loanCalcUser.php?id=".$toUpdateId;?>">Custom Payment</a></span> -->
 					
 				<div class="form-group">
 					<label for="exampleInputEmail1">Type of Payment  

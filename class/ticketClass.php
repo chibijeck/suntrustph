@@ -141,7 +141,7 @@ class ticket{
 	
 	
 	public function selectOneField($field,$fieldvalue,$criteria = null){
-	  $sql =  "SELECT * FROM ticket WHERE ".$field." = ' ".$fieldvalue."'";
+	  $sql =  "SELECT * FROM ticket WHERE ".$field." = '".$fieldvalue."'";
 	  if ($criteria){
 		 $sql.= " " . $criteria;
 	  } 
@@ -192,6 +192,11 @@ class ticket{
 	 				status = '". $this->status ."'
 		
 					WHERE id = ".$id;		
+		$result = $this->database->query($sql);
+	}
+
+	function updateOne($field,$criteria=null){
+		$sql = " UPDATE ticket SET ".$field." WHERE ".$criteria;	
 		$result = $this->database->query($sql);
 	}
 	

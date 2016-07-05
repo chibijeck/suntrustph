@@ -136,7 +136,7 @@ if(isset($_POST['submitReserve'])){
 									</tr>
 									<tr>
 										<td>
-											Room :
+											Unit :
 										</td>
 										<td>
 											' . $pbfr->getroom() .'
@@ -266,7 +266,7 @@ if(isset($_POST['submitReserve'])){
 									</tr>
 									<tr>
 										<td>
-											Room :
+											Unit :
 										</td>
 										<td>
 											' . $pbfr->getroom() .'
@@ -386,7 +386,7 @@ if(isset($_POST['submitReserve'])){
 									</tr>
 									<tr>
 										<td>
-											Room :
+											Unit :
 										</td>
 										<td>
 											' . $pbfr->getroom() .'

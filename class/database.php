@@ -20,10 +20,8 @@
   // $this->host = "localhost";        
 
 	// // Local db
-  // $this->user = "ismartpa_admin";            
-  // $this->password = "admin!@#";  
-  $this->user = "root";            
-  $this->password = "";  
+  $this->user = "ismartpa_admin";            
+  $this->password = "admin!@#";           
   $this->database = "ismartpa_suntrustph";    
   $this->rows = 0;
 

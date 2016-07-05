@@ -13,6 +13,12 @@
 							 <li><a href="myprofile.php?action=ticket">Ticket</a></li>
 							 <li><a href="myprofile.php?action=payment">Payment</a></li>				 
 						 	 <li><a href="myprofile.php?action=transaction">Transactions</a></li>
+						 	 <?php if($_SESSION['role_id'] == 1){?>
+						 	 <li><a href="loanCalcUser.php">Loan Calculator</a></li>
+						 	 <?php } ?>
+						 	 <?php if($_SESSION['role_id'] != 1 && $_SESSION['role_id'] != 6){?>
+						 	 <li><a href="myprofile.php?action=commission">Commissions</a></li>
+						 	 <?php } ?>
 						</ul>
 					</div>
 				</div>
@@ -44,6 +50,9 @@
 									break;
 								case "transaction":
 									include(rootpath . "view/myprofile/transactions.php");
+									break;
+								case "commission":
+									include(rootpath . "view/myprofile/commissions.php");
 									break;
 								case "editpagepayment":
 									include(rootpath . "view/myprofile/editpagepayment.php");

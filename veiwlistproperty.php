@@ -1,12 +1,77 @@
 <?php 
 	include("includes/header.php");
 ?>	
-
-	<div class="container mainBody">		
+	<script>		
+		$(function() {
+			$( ".searchFilterButton" ).click(function() {				
+				statusFilter = $('.statusFilter').val();
+				bldgFilter = $('.bldgFilter').val();
+				window.location = "/veiwlistproperty.php?status=" + statusFilter + "&bldg=" + bldgFilter;
+			});
+			$( ".clearFilterButton" ).click(function() {				
+				window.location = "/veiwlistproperty.php";
+			});
+		});
+	</script>
+	<div class="container mainBody">
+	<!-- <form method="POST"> -->
+		<div class="row">
+			<div class="col-md-4">
+			Filter by:
+				<select class="form-control statusFilter" placeholder=".input-sm">
+							<option value="">
+								Availability
+							</option>	
+							<option value="Available">
+								Available
+							</option>	
+							<option value="Reserved">
+								Reserved
+							</option>	
+							<option value="Sold">
+								Sold
+							</option>
+				</select>
+			</div>
+			<div class="col-md-4">
+			<br>
+				<select class="form-control bldgFilter" placeholder=".input-sm">
+							<option value="">
+								Project
+							</option>	
+							<option value="Ascentia">
+								Suntrust Ascentia
+							</option>	
+							<option value="Kirana">
+								Suntrust Kirana
+							</option>	
+							<option value="Parkview">
+								Suntrust Parkview
+							</option>
+				</select>
+			</div>
+			<div class="col-md-1">
+				<br>
+				<button type="button" class="btn btn-default searchFilterButton">							
+					<span class="glyphicon glyphicon-search" aria-hidden="true"></span> Submit
+				</button>
+			</div>
+			<div class="col-md-1">
+				<br>
+				<button type="button" class="btn btn-default clearFilterButton">							
+					<span class="glyphicon glyphicon-search" aria-hidden="true"></span> Clear
+				</button>
+			</div>
+			<div class="col-md-6"></div>
+		</div>
+	<!-- </form> -->
+		<br>
 		<div class="row">		
 			
 				<?php 			
-				
+				$statusFilter = empty($_GET['status']) ? '' : $_GET['status'];
+				$bldgFilter = empty($_GET['bldg']) ? '' : $_GET['bldg'];
+
 				$properties = new properties();	
 				
 				//filter query starts here
@@ -78,9 +143,23 @@
 							default:
 								$queryProperty .= ' price BETWEEN 5000000 AND 1000000';
 						}				
-				}	
-				
-				$properties = $properties->selectAll( $queryProperty . ' ORDER BY created_at DESC');
+				}
+				if(!empty($statusFilter) || !empty($bldgFilter)){
+					$queryProperty .= "WHERE ";
+				}
+				if(!empty($statusFilter)){
+					//$queryProperty .= "WHERE ";
+					$queryProperty .= "status = '".$statusFilter."'";
+				}
+				if(!empty($statusFilter) && !empty($bldgFilter)){
+					$queryProperty .= " AND ";
+				}
+				if(!empty($bldgFilter)){
+					$queryProperty .= "title LIKE '%".$bldgFilter."%'";
+				}
+
+				$properties = $properties->selectAll( $queryProperty . " ORDER BY created_at DESC");
+
 				if(count($properties) != 0){
 					foreach($properties as $row){
 					?>

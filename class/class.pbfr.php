@@ -1,5 +1,6 @@
 <?php 		
 include_once("database.php");
+error_reporting(0);
 class pbfr{ 
 
 	// **********************

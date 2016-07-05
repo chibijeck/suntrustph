@@ -116,9 +116,27 @@
 					<?php if($row->getstatus() == 1){ echo 'disabled="disabled"'; }?>
 				>
 			</form>
-			<?php } ?>				
+			<?php } 
+				if(!empty($_GET['id']) && !empty($_GET['building']) && $_GET['floor'] != 'null'){?>
+					<table style="float: right;">
+		                <tr>
+		                    <td>
+		                        <img src="http://suntrustph.com/images/Asmara-Compass.PNG">
+		                    </td>
+		                </tr>   
+		            </table>
+    		<?php }	?>				
 		</div>			
-	</div>			
+	</div>
+	<?php if(!empty($_GET['id']) && !empty($_GET['building']) && $_GET['floor'] != 'null'){?>
+			<table>
+                <tr>
+                    <td>
+                        <img src="http://suntrustph.com/images/Floor-Plan.PNG">
+                    </td>
+                </tr>   
+            </table>
+    <?php }?>
 </div>		
 
 

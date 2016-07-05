@@ -86,7 +86,7 @@
 									
 								  </div>							  
 								<div class="form-group">
-								  <button type="submit" name="loginBtn"  class="btn btn-default">Log In</button>
+								  <button type="submit" name="loginBtn"  class="btn btn-primary">Log In</button>
 								  <!--<a type="submit" class="btn btn-default" href="login.php?action=register" >Register</a>-->
 								  </div>
 							</form>		
@@ -126,6 +126,11 @@
 <?php
 	if(isset($_POST['forgotBtn'])){
 		echo "<script>alert('Password has been sent to ".$_POST['email']."');</script>";
+		$user = new user(); 
+		$user->selectOneField("email", $_POST['email']);				
+		$dbU = $user->getusername();
+		$dbP = $user->getpassword();		
+		//$dbemail = $user->getemail();	
 			$mailCustomer = new PHPMailer;
 			$mailCustomer->From = fromSystemEmail;
 			$mailCustomer->FromName = 'Suntrust';	
@@ -133,7 +138,15 @@
 			$mailCustomer->addAddress($_POST['email']);  //send to customer
 			$mailCustomer->isHTML(true);// Set email format to HTML							
 			$mailCustomer->Subject = 'Password Notification';
-			$mailCustomer->Body    = 'Your password is ABCDEF';						
+			$mailCustomer->Body ='<img src="http://suntrustph.com/images/logo.png" class="suntrust">';
+			$mailCustomer->Body .= '<br><br>';
+			$mailCustomer->Body .= 'Dear '.$dbU.',';
+			$mailCustomer->Body .= '<br><br>';
+			$mailCustomer->Body .= 'This email was sent automatically by Suntrust is response to your request to recover your password. <br>This is done for your protection; only you, the recipient of this email can take the next step is in the password recover process.';
+			$mailCustomer->Body .= '<br><br>';
+			$mailCustomer->Body .= 'Your password is <b>'. $dbP . '</b>';						
+			$mailCustomer->Body .= '<br><br><br><br><br><br>';
+			$mailCustomer->Body .= 'Copyright 2015. Suntrust Properties, Inc. All Rights Reserved.';
 			$mailCustomer->send();
 			//return true;
 	}

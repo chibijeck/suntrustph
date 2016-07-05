@@ -118,7 +118,7 @@
 									<li><a href="manageProperties.php">Manage Properties</a></li>					
 									<li><a href="manageTicket.php">Manage Ticket</a></li>
 									<li><a href="managePayment.php">Manage Payment</a></li>
-									<!--<li><a href="manageReport.php">Manage Reports</a></li>-->
+									<li><a href="manageCommission.php">Manage Commissions</a></li>
 									<li><a href="manageEmailnotif.php?action=editpage&id=1">Scheduled Notification</a></li>
 									<li><a href="manageEmailnotif.php?action=sendemail">Resend Email</a></li>
 								<?php } ?>

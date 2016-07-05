@@ -6,7 +6,7 @@ Transactions / Payment History
     {
            $( ".datepicker" ).datepicker({
               showOn: "button",
-              buttonImage: "images/iconbox.jpg",
+              buttonImage: "images/calendar-icon-mac.jpg",
               buttonImageOnly: true
             });
     });   
@@ -17,9 +17,9 @@ Transactions / Payment History
     <input type="text" class="datepicker" name='to' size='9' value="" />
 	<!--Filter By:-->
 	<!--<input type="date" id="datepicker" name='from' value="" /> -->
-	<input type="submit" name="datePick" value="Submit"/>
+	<input type="submit" class="btn btn-default" name="datePick" value="Submit"/>
 </form>
-
+<br>
 <div class="table-responsive">
 	<table class="table table-bordered table-hover">
 		<thead>
@@ -31,7 +31,7 @@ Transactions / Payment History
 				<th width="130">Price          </th>
 				<th>Building      </th>
 				<th>Floor          </th>
-				<th>Room Number      </th>
+				<th>Unit     </th>
 				<th>Type of Payment  </th>
 				<th>Last Update  </th>																	
 			</tr>
@@ -104,7 +104,7 @@ Transactions / Payment History
 			}else{ ?>
 					<div class="alert alert-danger alert-dismissible" role="alert">
 					  <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-					  <strong>There is no payment associated to your account. </strong>
+					  <strong>There is no transactions history associated to your account. </strong>
 					</div>
 				<?php				
 				}
